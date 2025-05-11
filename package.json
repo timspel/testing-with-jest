@@ -1,0 +1,11 @@
+{
+  "name": "testing-with-jest",
+  "version": "1.0.0",
+  "description": "Testing and packaging",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest tests"
+  },
+  "author": "Tim Do",
+  "license": "ISC"
+}
