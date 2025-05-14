@@ -46,7 +46,7 @@ describe('Stack functionality', () => {
         const pushButton = await driver.findElement(By.id('push'));
         await pushButton.click();
         let alert = await driver.switchTo().alert();
-        await alert.sendKeys("Päron");
+        await alert.sendKeys("Apelsin");
         await alert.accept();
 
         const topOfStack = await driver.findElement(By.id('top_of_stack')).getText();
