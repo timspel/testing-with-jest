@@ -20,6 +20,10 @@ beforeAll(async () => {
 
 });
 
+beforeEach(async () => {
+    await driver.get(fileUnderTest);
+});
+
 // Allra sist avslutar vi Firefox igen
 afterAll(async() => {
     await driver.quit();
@@ -41,22 +45,13 @@ describe('Clicking "Pusha till stacken"', () => {
 });
 
 
-describe('Stack functionality', () => {
-    it('should push an element and peek at the top of the stack', async () => {
-        const pushButton = await driver.findElement(By.id('push'));
-        await pushButton.click();
+describe('Shows alert when popping form empty stack', () => {
+    it('should display an alert if trying to pop when the stack is empty', async () => {
+      const popButton = await driver.findElement(By.id('pop'));
+        await popButton.click();
         let alert = await driver.switchTo().alert();
-        await alert.sendKeys("Apelsin");
+        let alertText = await alert.getText();
+        expect(alertText.toLowerCase()).toContain("tog bort undefined"); 
         await alert.accept();
-
-        const topOfStack = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(topOfStack).toEqual("Apelsin");
-
-        const peekButton = await driver.findElement(By.id('peek'));
-        await peekButton.click();
-
-       
-        const peekedValue = await driver.findElement(By.id('top_of_stack')).getText();
-        expect(peekedValue).toEqual("Apelsin");
     });
 });
